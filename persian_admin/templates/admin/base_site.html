@@ -1,0 +1,32 @@
+{% extends "admin/base.html" %}
+{% load i18n static persian_admin_tags %}
+{% load static %}
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} |
+    {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% endblock %}
+{% block extrastyle %}
+    {% get_persian_admin_font as font %}
+
+    {{ block.super }}
+    {% if font.name == 'sahel' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'persian_admin/css/sahel.css' %}"/>
+    {% elif font.name == 'yekan' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'persian_admin/css/yekan.css' %}"/>
+    {% elif font.name == 'samim' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'persian_admin/css/samim.css' %}"/>
+        {% elif font.name == 'parastoo' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'persian_admin/css/parastoo.css' %}"/>
+        {% elif font.name == 'shabnam' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'persian_admin/css/shabnam.css' %}"/>
+        {% elif font.name == 'tanha' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'persian_admin/css/tanha.css' %}"/>
+        {% elif font.name == 'vazir' %}
+        <link rel="stylesheet" type="text/css" href="{% static 'persian_admin/css/vazir.css' %}"/>
+
+    {% endif %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
